@@ -1,27 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ButtonM from '@mui/material/Button';
-import Icon from '../Icon/Icon';
-import { iconVariants } from '../Icon/icon-variants'
+import { Button as ButtonM } from '@looker/components'
 
 /**
- * @uxpindocurl https://mui.com/components/buttons/#main-content
+ * @uxpindocurl https://looker-open-source.github.io/components/latest/?path=/docs/docs-button--docs
  */
 function Button(props) {
-  const { uxpinRef, ...other } = props;
   return (
-    <ButtonM
-      {...other}
-      ref={uxpinRef}
-      startIcon={props.startIcon && <Icon>{props.startIcon}</Icon>}
-      endIcon={props.endIcon && <Icon>{props.endIcon}</Icon>}
-    >
+    <ButtonM {...props}>
       {props.children}
     </ButtonM>
   )
 }
 
-Button.propTypes ={
+Button.propTypes = {
+
   /**
    * The label of the button.
    * @uxpinpropname Label
@@ -29,61 +22,39 @@ Button.propTypes ={
   children: PropTypes.node,
 
   /**
-   * The color of the button.
-   */
-  color: PropTypes.oneOf(["inherit", "primary", "secondary", "success", "error", "info", "warning"]),
+  * Defines the color of the button. Can be the string name of a color listed in the color theme, or a color object.
+  * */
+  type: PropTypes.oneOf(["button", "submit", "reset"]),
 
   /**
-   * If `true`, the button will be disabled.
-   */
+  * Defines the color of the button. Can be the string name of a color listed in the color theme, or a color object.
+  * */
+  color: PropTypes.oneOf([
+  "key",
+  "critical",
+  "neutral",
+  "calculation",
+  "dimension",
+  "inform",
+  "link",
+  "measure",
+  "positive",
+  "warn"]),
+
+  /**
+* Defines the color of the button. Can be the string name of a color listed in the color theme, or a color object.
+* */
+  size: PropTypes.oneOf(["small", "xxsmall", "xsmall", "medium", "large"]),
+
+  /**
+* If true, the button's width will be set to 100%.
+* */
+  fullWidth: PropTypes.bool,
+  /**
+* Shows button as disabled.
+* */
   disabled: PropTypes.bool,
 
-  /**
-   * If `true`, the button will have no elevation.
-   */
-  disableElevation: PropTypes.bool,
-
-  /**
-   * If `true`, the button will take up the full width of its container.
-   */
-  fullWidth: PropTypes.bool,
-
-  /**
-   * The size of the button.
-   */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-
-  /**
-   * The type of button.
-   */
-  variant: PropTypes.oneOf(["text", "outlined", "contained"]),
-
-  /**
-   * The HREF of the button.
-   */
-  href: PropTypes.string,
-
-  /**
-   * If set, icon will display to the left.
-   * Use the name of the icon from https://material.io/tools/icons.
-   */
-  startIcon: PropTypes.oneOf(iconVariants),
-
-  /**
-   * If set, icon will display to the right.
-   * Use the name of the icon from https://material.io/tools/icons.
-   */
-  endIcon: PropTypes.oneOf(iconVariants),
-
-  /**
-   * On click event to use with UXPin interactions.
-   */
-  onClick: PropTypes.func,
-
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.object,
 }
 
 export default Button;
